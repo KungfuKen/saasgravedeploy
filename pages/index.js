@@ -1,5 +1,5 @@
 import { useState, useEffect } from 'react';
-import supabase from './supabaseClient';
+import { createClient } from '@supabase/supabase-js'
 import PostLayout from './postsLayout';
 import { useRouter } from 'next/router';
 
@@ -8,6 +8,9 @@ export default function Posts() {
   const [posts, setPosts] = useState([]);
   const [currentPostIndex, setCurrentPostIndex] = useState(0);
   const router = useRouter();
+  const Url = process.env.NEXT_PUBLIC_SUPABASE_URL
+  const Key = process.env.NEXT_PUBLIC_SUPABASE_ANON_KEY
+  const supabase = createClient(Url, Key)
 
   const handleClick = () => {
     router.push('/dashboard');

@@ -1,5 +1,5 @@
 import { useState } from "react";
-import supabase from './supabaseClient';
+import { createClient } from '@supabase/supabase-js'
 
 export default function UserUploadForm() {
   const [name, setName] = useState("");
@@ -7,6 +7,11 @@ export default function UserUploadForm() {
   const [dob, setDob] = useState(""); //date of birth
   const [dod, setDod] = useState(""); //date of death
   const [deathCause, setdeathCause] = useState("")
+
+  const Url = process.env.NEXT_PUBLIC_SUPABASE_URL
+  const Key = process.env.NEXT_PUBLIC_SUPABASE_ANON_KEY
+  const supabase = createClient(Url, Key)
+
   //const [promptInput, setpromptInput] = useState("");
   //const [result, setResult] = useState();
 
